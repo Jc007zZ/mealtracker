@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MealTracker - Controle suas refeições diárias
 
-## Getting Started
+Aplicação full stack desenvolvida com NextJS (App Router) para registro e visualização de refeições diárias.
 
-First, run the development server:
+## Funcionalidades
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Registro de refeições com nome, descrição, calorias, data/hora e tipo
+- Visualização de refeições em dashboard
+- Filtragem por tipo de refeição (Café da manhã, almoço, lanche da tarde ou janta)
+- Cálculo do total de calorias por dia
+- Estatísticas por tipo de refeição
+- Autenticação de usuários com Google (via AuthJS)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Tecnologias Utilizadas
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- NextJS com App Router
+- API Routes internas do NextJS
+- MongoDB Atlas
+- TailwindCSS
+- Auth.js v5 (NextAuth)
+- Vercel (deploy)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Configuração
 
-## Learn More
+### Pré-requisitos
 
-To learn more about Next.js, take a look at the following resources:
+- Node.js 18+ instalado
+- Conta no MongoDB Atlas
+- Projeto configurado no Google Cloud Console para OAuth
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Configuração do ambiente
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Clone o repositório:
 
-## Deploy on Vercel
+   ```bash
+   git clone https://github.com/seu-usuario/meal-tracker.git
+   cd meal-tracker
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Instale as dependências:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+   ```bash
+   npm install
+   ```
+
+3. Configure as variáveis de ambiente:
+
+   - Crie um arquivo `.env.local` na raiz do projeto
+   - Preencha as seguintes variáveis:
+
+   ```
+   # MongoDB
+   MONGODB_URI=mongodb+srv://seu_usuario:sua_senha@cluster0.mongodb.net/meal-tracker?retryWrites=true&w=majority
+
+   # NextAuth
+   NEXTAUTH_URL=http://localhost:3000
+   NEXTAUTH_SECRET=your-secret-key-here
+
+   # Google OAuth
+   GOOGLE_CLIENT_ID=your-google-client-id
+   GOOGLE_CLIENT_SECRET=your-google-client-secret
+   ```
+
+4. Execute o servidor de desenvolvimento:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Acesse `http://localhost:3000` no navegador.
+
+## Deploy na Vercel
+
+Esta aplicação está configurada para fácil deploy na Vercel:
+
+1. Crie uma conta na Vercel
+2. Conecte o repositório GitHub
+3. Configure as variáveis de ambiente
+4. Deploy!
+
+## Estrutura do Projeto
+
+- `/app` - Páginas da aplicação (App Router)
+- `/components` - Componentes reutilizáveis
+- `/lib` - Funções de utilidade e configurações
+- `/models` - Modelos do MongoDB
+- `/api` - Rotas de API
+
+## Licença
+
+MIT
