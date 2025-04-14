@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "../../auth/[...nextauth]/route";
+// import { authOptions } from "../../auth/[...nextauth]/route";
+import { authOptions } from "../../../../lib/auth";
 import dbConnect from "@/lib/db";
 import Meal from "@/models/Meal";
 
@@ -18,9 +19,12 @@ async function ensureConnection() {
 // GET /api/meals/[id] - Obtém uma refeição específica
 export async function GET(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  {
+  params,
+}: any
 ) {
   const session = await getServerSession(authOptions);
+  const { id } = await params
 
   if (!session) {
     return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
@@ -36,7 +40,7 @@ export async function GET(
     }
 
     const meal = await Meal.findOne({
-      _id: params.id,
+      _id: id,
       userId: session.user.id,
     });
 
@@ -60,8 +64,11 @@ export async function GET(
 // PUT /api/meals/[id] - Atualiza uma refeição específica
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  {
+  params,
+}: any
 ) {
+  const { id } = await params
   const session = await getServerSession(authOptions);
 
   if (!session) {
@@ -116,7 +123,7 @@ export async function PUT(
 
     const meal = await Meal.findOneAndUpdate(
       {
-        _id: params.id,
+        _id: id,
         userId: session.user.id,
       },
       updateData,
@@ -160,10 +167,12 @@ export async function PUT(
 // DELETE /api/meals/[id] - Exclui uma refeição específica
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  {
+  params,
+}: any
 ) {
   const session = await getServerSession(authOptions);
-
+  const { id } = await params
   if (!session) {
     return NextResponse.json({ error: "Não autorizado" }, { status: 401 });
   }
@@ -178,7 +187,7 @@ export async function DELETE(
     }
 
     const meal = await Meal.findOneAndDelete({
-      _id: params.id,
+      _id: id,
       userId: session.user.id,
     });
 

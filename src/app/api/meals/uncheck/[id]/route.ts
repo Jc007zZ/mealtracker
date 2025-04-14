@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth/next";
-import { authOptions } from "../../../auth/[...nextauth]/route";
+import { authOptions } from "../../../../../lib/auth"
 import dbConnect from "@/lib/db";
 import Meal from "@/models/Meal";
 
@@ -20,7 +20,7 @@ async function ensureConnection() {
 // /api/check/[id]
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: any
 ) {
   const session = await getServerSession(authOptions);
   if (!session) {
