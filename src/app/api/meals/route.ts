@@ -62,7 +62,10 @@ export async function GET(req: NextRequest) {
     //   // };
     // }
     
-    const meals = await Meal.find(query).sort({ dateTime: -1 });
+    const meals = await Meal.find(query).sort({ 
+      check: -1,
+      dateTime: -1 
+    });
     console.log(`API - Encontradas ${meals.length} refeições`);
 
     return NextResponse.json(meals);

@@ -128,7 +128,7 @@ export default function MealCard({ meal, onDelete }: MealCardProps) {
   const formattedDate = formatMealDate(meal.dateTime);
 
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition">
+    <div className={`rounded-lg shadow-md overflow-hidden  hover:shadow-lg transition ${meal.check ? 'border border-green-400 bg-green-500/10' : 'border border-gray-200 bg-white'}` }>
       <div className="p-5">
         <div className="flex justify-between items-start mb-4">
           <h3 className="text-lg font-semibold text-gray-800">{meal.name}</h3>
@@ -166,7 +166,9 @@ export default function MealCard({ meal, onDelete }: MealCardProps) {
           </div>
         </div>
 
-        <div className="pt-4 border-t border-gray-100 flex justify-between items-center">
+        <div className={`pt-4 border-t flex justify-between items-center ${
+    meal.check ? 'border-green-400' : 'border-gray-100'
+  }`}>
           <Link
             href={`/meals/edit/${meal._id}`}
             className="text-primary-600 hover:text-primary-800 text-sm font-medium"
