@@ -17,13 +17,11 @@ export default function SignIn() {
   const handleGoogleSignIn = async () => {
     setIsLoading(true);
     setError("");
-    alert("teste");
     try {
       const result = await signIn("google", {
         callbackUrl,
         redirect: false,
       });
-       alert("teste 2");
       if (result?.error) {
         setError("Ocorreu um erro na autenticação.");
       }
