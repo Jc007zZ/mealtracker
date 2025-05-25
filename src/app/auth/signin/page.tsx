@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function SignIn() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
+   const callbackUrl = searchParams.get("callbackUrl") || "/dashboard";
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -17,13 +17,13 @@ export default function SignIn() {
   const handleGoogleSignIn = async () => {
     setIsLoading(true);
     setError("");
-
+    alert("teste");
     try {
       const result = await signIn("google", {
         callbackUrl,
         redirect: false,
       });
-
+       alert("teste 2");
       if (result?.error) {
         setError("Ocorreu um erro na autenticação.");
       }
