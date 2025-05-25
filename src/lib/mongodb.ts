@@ -15,7 +15,7 @@ declare global {
   var _mongoClientPromise: Promise<MongoClient> | undefined;
 }
 
-if (process.env.NODE_ENV === "development") {
+if (/*process.env.NODE_ENV === "development" */ true) {
   // Em desenvolvimento, usamos uma variável global para preservar a conexão
   // durante o recarregamento de módulo causado por HMR (Hot Module Replacement)
   if (!global._mongoClientPromise) {
@@ -26,14 +26,15 @@ if (process.env.NODE_ENV === "development") {
     });
   }
   clientPromise = global._mongoClientPromise;
-} else {
-  // Em produção, é melhor não usar uma variável global
-  client = new MongoClient(uri, options);
-  clientPromise = client.connect().catch((err) => {
-    console.error("Erro ao conectar ao MongoDB:", err);
-    throw err;
-  });
 }
+//  else {
+//   // Em produção, é melhor não usar uma variável global
+//   client = new MongoClient(uri, options);
+//   clientPromise = client.connect().catch((err) => {
+//     console.error("Erro ao conectar ao MongoDB:", err);
+//     throw err;
+//   });
+// }
 
 // Adicione um tratamento para verificar a conexão
 clientPromise
